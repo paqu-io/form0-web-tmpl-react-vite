@@ -32,7 +32,7 @@ export default function Form0Form({
       //theme={myCustomTheme} // Custom theme
       colorMode={colorMode}
       labelPosition={labelPosition}
-      labelWidthPercent={labelPosition}
+      labelWidthPercent={labelWidthPercent}
       formWidth={formWidth}
       simplifiedMode={simplifiedMode}
       onSimplifiedNavigation={onSimplifiedNavigation}
