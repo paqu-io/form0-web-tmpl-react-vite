@@ -328,6 +328,110 @@ export default {
             min_length: 2,
             max_length: 3,
           },
+          {
+            type: 'FormLinkField',
+            data_name: 'test_form_link',
+            label: 'This is a form link test',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: false,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            allow_creating_records: true,
+            allow_existing_records: true,
+            allow_updating_records: false,
+            allow_multiple_records: false,
+            form_id: '01936b8e-7f2a-7c3d-9e4f-123456789abc',
+            record_conditions: {
+              and: [
+                {
+                  linked_form_field_id: 'sample123',
+                  operator: 'equal_to',
+                  value: 'test_value_1'
+                },
+                {
+                  or: [
+                    {
+                      linked_form_field_id: 'sample456',
+                      operator: 'greater_than',
+                      value: 1.55
+                    },
+                    {
+                      linked_form_field_id: 'sample789',
+                      operator: 'equal_to',
+                      value: 'test_value_3'
+                    }
+                  ]
+                }
+              ]
+            },
+            record_defaults: [
+              {
+                source_field_id: 'sample567',
+                destination_field_id: 'first_import'
+              },
+              {
+                source_field_id: 'sample234',
+                destination_field_id: 'second_import'
+              }
+            ]
+          },
+          {
+            type: 'TextField',
+            data_name: 'first_import',
+            label: 'First IMPORT',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: false,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: true,
+            read_only_conditions: null,
+            default_value: null,
+            pattern: null,
+            pattern_description: null,
+            supporting_image: false,
+            supporting_image_path: null,
+            supporting_image_display: null
+          },
+          {
+            type: 'SingleChoiceField',
+            data_name: 'second_import',
+            label: 'Second IMPORT',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: false,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: true,
+            read_only_conditions: null,
+            default_value: null,
+            allow_other: false,
+            supporting_image: false,
+            supporting_image_path: null,
+            supporting_image_display: null,
+            is_searchable: false,
+            is_searchable_mode: null,
+            choices: [
+              {
+                label: 'Airplane',
+                value: 'airplane'
+              },
+              {
+                label: 'Car',
+                value: 'car'
+              }
+            ]
+          },
         ]
       },
       {
