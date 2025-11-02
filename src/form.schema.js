@@ -2,6 +2,22 @@ export default {
   form: {
     name: 'MyForm',
     description: 'This is a test description',
+    title_field: {
+      type: 'TitleField',
+      key: '@title',
+      data_name: 'title',
+      label: 'Title',
+      display: 'default',
+      enabled: true,
+      visible: true,
+      visible_conditions: null,
+      read_only: true,
+      read_only_conditions: null,
+      elements: [
+        'first_name',
+        'favorite_color'
+      ]
+    },
     elements: [
       {
         type: 'Section',
