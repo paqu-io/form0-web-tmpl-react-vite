@@ -311,6 +311,23 @@ export default {
             min_length: 2,
             max_length: 3,
           },
+          {
+            type: 'VideoField',
+            data_name: 'house_video',
+            label: 'Take a video of the house',
+            display: 'default',
+            description: 'This is a description of the video field',
+            description_mode: 'subtext',
+            required: false,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            min_length: 2,
+            max_length: 3,
+          },
         ]
       },
       {
