@@ -2,6 +2,36 @@ export default {
   form: {
     name: 'MyForm',
     description: 'This is a test description',
+    status_field: {
+      type: 'StatusField',
+      key: '@status',
+      data_name: 'status',
+      label: 'Status',
+      display: 'default',
+      enabled: true,
+      visible: true,
+      visible_conditions: null,
+      read_only: false,
+      read_only_conditions: null,
+      default_value: 'pending',
+      choices: [
+        {
+          label: 'Enrolled',
+          value: 'enrolled',
+          color: '#87D30F',
+        },
+        {
+          label: 'Not Enrolled',
+          value: 'not_enrolled',
+          color: '#FF0000',
+        },
+        {
+          label: 'Pending',
+          value: 'pending',
+          color: '#FFA500',
+        },
+      ],
+    },
     title_field: {
       type: 'TitleField',
       key: '@title',
