@@ -81,6 +81,26 @@ export default {
             supporting_image_display: null, //supporting_image_display can be 'default', 'dialog' or null
           },
           {
+            type: 'TextField',
+            data_name: 'last_name',
+            label: 'last Name',
+            display: 'default', //TextField can only be 'default'
+            description: 'This is a test description', //description can be null or a string
+            description_mode: 'subtext', //description_mode can be null, 'default' or 'subtext'
+            required: true,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            pattern: null,
+            pattern_description: null,
+            supporting_image: false, //supporting_image can be true or false
+            supporting_image_path: null, //supporting_image_path can be null or a string
+            supporting_image_display: null, //supporting_image_display can be 'default', 'dialog' or null
+          },
+          {
             type: 'NumericField',
             data_name: 'age',
             label: 'Age',
@@ -108,7 +128,7 @@ export default {
             display: 'default',
             description: 'Pick the color you like the most.',
             description_mode: 'default',
-            required: false,
+            required: true,
             required_conditions: null,
             visible: true,
             visible_conditions: null,
@@ -257,6 +277,23 @@ export default {
             read_only: false,
             read_only_conditions: null,
             default_value: 'now',
+          },
+          {
+            type: 'PhotoField',
+            data_name: 'house_photo',
+            label: 'Take a photo of the house',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: true,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            min_length: 2,
+            max_length: 3,
           },
         ]
       },
