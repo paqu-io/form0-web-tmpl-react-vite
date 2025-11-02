@@ -269,6 +269,22 @@ export default {
         supporting_image_display: null, //supporting_image_display can be 'default', 'dialog' or null
       },
       {
+        type: 'LabelField',
+        data_name: 'photo_consent',
+        label: 'Please be aware that photographs may be taken at this Community Engagement event. By submitting this form, you consent to the use of any photos in which you appear in reports related to the Housing Improvement under PDUNM project and in Build Change marketing materials. You also acknowledge that the information you provide on this form will only be used for the purposes of this project.',
+        display: 'default',
+        description: null,
+        description_mode: null,
+        required: false,
+        visible: true,
+        visible_conditions: null,
+        read_only: true,
+        default_value: null,
+        supporting_image: false,
+        supporting_image_path: null,
+        supporting_image_display: null,
+      },
+      {
         type: 'Section',
         data_name: 'section_drill',
         label: 'Drilldown section test',
