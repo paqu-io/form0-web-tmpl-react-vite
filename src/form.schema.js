@@ -255,7 +255,7 @@ export default {
             display: 'default',
             description: null,
             description_mode: null,
-            required: false,
+            required: true,
             required_conditions: null,
             visible: true,
             visible_conditions: null,
