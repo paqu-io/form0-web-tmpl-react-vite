@@ -1,8 +1,13 @@
 import { useMemo, useRef } from "react";
 import { FieldRegistryProvider, FormRenderer } from "form0-react";
 import schema from "../form.schema.js";
-import { Form0DateField } from "../field-renderers/index.js";
+import { Form0DateField, Form0DateFieldShadcn } from "../field-renderers/index.js";
 //import { myCustomTheme } from '../custom-theme.css.js';
+
+// Toggle between old and new DateField implementations
+// Set to Form0DateField for the original implementation
+// Set to Form0DateFieldShadcn for the shadcn-based implementation
+const ActiveDateField = Form0DateFieldShadcn; // Change this to Form0DateFieldShadcn to test the new component
 
 export default function Form0Form({ 
   theme, 
@@ -18,7 +23,7 @@ export default function Form0Form({
   const didLogSchema = useRef(false);
   const renderers = useMemo(
     () => ({
-      DateField: Form0DateField,
+      DateField: ActiveDateField,
     }),
     []
   );
