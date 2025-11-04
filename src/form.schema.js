@@ -48,6 +48,24 @@ export default {
         'favorite_color'
       ]
     },
+    events: {
+      code: `
+        function alertTest(event) {
+          ALERT('Warning!', 'Welcome to South America!');
+        }
+
+        ON('load-record', alertTest);
+        
+        ON('change', 'city', function (event) {
+          ALERT('Warning!', 'City changed to ' + CHOICEVALUE($city));
+          SETVALUE('who_voted', 'Hoooooola!');
+          SETVALUE('comments', 'Boooooola!');
+          SETVALUE('age', 33);
+          SETVALUE('fruit', 'banana');
+          SETVALUE('food', ['pasta', 'focaccia']);
+        })
+      `
+    },
     elements: [
       {
         type: 'Section',
@@ -120,6 +138,119 @@ export default {
             supporting_image: false, //supporting_image can be true or false
             supporting_image_path: null, //supporting_image_path can be null or a string
             supporting_image_display: null, //supporting_image_display can be 'default', 'dialog' or null
+          },
+          {
+            type: 'SingleChoiceField',
+            data_name: 'city',
+            label: 'City',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: true,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            allow_other: true,
+            supporting_image: false,
+            supporting_image_path: null,
+            supporting_image_display: null,
+            is_searchable: true,
+            is_searchable_mode: 'default',
+            choices: [
+              {
+                label: 'Bogotá',
+                value: 'bogota'
+              },
+              {
+                label: 'Recanati',
+                value: 'recanati'
+              },
+              {
+                label: 'New York',
+                value: 'new_york'
+              },
+              {
+                label: 'São Paulo - Centro',
+                value: 'sao_paulo_centro'
+              }
+            ],
+          },
+          {
+            type: 'SingleChoiceField',
+            data_name: 'fruit',
+            label: 'Fruit',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: true,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            allow_other: false,
+            supporting_image: false,
+            supporting_image_path: null,
+            supporting_image_display: null,
+            is_searchable: false,
+            is_searchable_mode: null,
+            choices: [
+              {
+                label: 'Mela',
+                value: 'mela'
+              },
+              {
+                label: 'Banana',
+                value: 'banana'
+              },
+              {
+                label: 'Fragola',
+                value: 'fragola'
+              }
+            ],
+          },
+          {
+            type: 'MultiChoiceField',
+            data_name: 'food',
+            label: 'Please select your favorite food!',
+            display: 'default',
+            description: null,
+            description_mode: null,
+            required: true,
+            required_conditions: null,
+            visible: true,
+            visible_conditions: null,
+            read_only: false,
+            read_only_conditions: null,
+            default_value: null,
+            allow_other: false,
+            supporting_image: false,
+            supporting_image_path: null,
+            supporting_image_display: null,
+            is_searchable: false,
+            is_searchable_mode: null,
+            choices: [
+              {
+                label: 'Pasta',
+                value: 'pasta'
+              },
+              {
+                label: 'Pizza',
+                value: 'pizza'
+              },
+              {
+                label: 'Focaccia',
+                value: 'focaccia'
+              },
+              {
+                label: 'Salumi',
+                value: 'salumi'
+              }
+            ],
           },
           {
             type: 'SingleChoiceField',
