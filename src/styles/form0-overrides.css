@@ -1,0 +1,470 @@
+/**
+ * form0 Custom Styles
+ *
+ * This file contains custom styling for form0 components.
+ * These styles extend and override the default form0-react styles.
+ *
+ * Organized by component type for maintainability.
+ */
+
+/* ============================================
+   form0 Brand Colors (CSS Variables)
+   ============================================ */
+
+:root {
+  /* form0 Brand Colors */
+  --form0-accent: 210 100% 56%;
+  --form0-accent-hover: 210 100% 48%;
+
+  /* form0 Field Colors */
+  --form0-field-border: 214 16% 86%;
+  --form0-field-border-hover: 214 32% 68%;
+  --form0-field-bg: 0 0% 100%;
+
+  /* form0 Surface & Typography */
+  --form0-surface: 0 0% 100%;
+  --form0-foreground: 215 15% 26%;
+  --form0-muted-foreground: 215 12% 55%;
+
+  /* form0 Component-Specific */
+  --form0-calendar-surface: 210 40% 97%;
+  --form0-shadow: 217 33% 12%;
+}
+
+.dark {
+  /* form0 Brand Colors */
+  --form0-accent: 210 100% 68%;
+  --form0-accent-hover: 210 100% 63%;
+
+  /* form0 Field Colors */
+  --form0-field-border: 215 18% 32%;
+  --form0-field-border-hover: 215 18% 48%;
+  --form0-field-bg: 217 35% 12%;
+
+  /* form0 Surface & Typography */
+  --form0-surface: 221 45% 10%;
+  --form0-foreground: 215 40% 92%;
+  --form0-muted-foreground: 215 20% 70%;
+
+  /* form0 Component-Specific */
+  --form0-calendar-surface: 220 34% 20%;
+  --form0-shadow: 216 38% 6%;
+}
+
+/* ============================================
+   form0 Field Components
+   ============================================ */
+
+.form0-field {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid hsl(var(--form0-field-border));
+  background-color: hsl(var(--form0-field-bg));
+  color: hsl(var(--form0-foreground));
+  font-size: 0.95rem;
+  line-height: 1.2;
+  font-weight: 500;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+  cursor: pointer;
+}
+
+.form0-field:hover {
+  border-color: hsl(var(--form0-field-border-hover));
+  transform: translateY(0px);
+}
+
+.form0-field:focus-visible {
+  outline: none;
+  border-color: hsl(var(--form0-accent));
+  box-shadow:
+    0 0 0 2px hsla(var(--form0-accent) / 0.18),
+    0 12px 30px hsla(var(--form0-shadow) / 0.22);
+}
+
+.form0-field--disabled,
+.form0-field:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.form0-field-value {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  font-weight: 500;
+  transition: color 180ms ease;
+}
+
+.form0-field-value--placeholder {
+  color: hsl(var(--form0-muted-foreground));
+  font-weight: 400;
+}
+
+.form0-field-value--filled {
+  color: hsl(var(--form0-foreground));
+}
+
+.form0-field-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.form0-field-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: hsl(var(--form0-muted-foreground));
+  transition: transform 180ms ease;
+  flex-shrink: 0;
+}
+
+.form0-field-trigger[aria-expanded="true"] .form0-field-icon {
+  transform: rotate(-10deg) scale(1.05);
+  color: hsl(var(--form0-accent));
+}
+
+.form0-field-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: hsl(var(--form0-muted-foreground));
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+  cursor: pointer;
+}
+
+.form0-field-clear:hover {
+  background-color: hsla(var(--form0-accent) / 0.14);
+  color: hsl(var(--form0-accent));
+  transform: scale(1.1);
+}
+
+.form0-field-clear-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+/* ============================================
+   Date Field Component
+   ============================================ */
+
+.form0-date-field {
+  position: relative;
+}
+
+.form0-date-field__native-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   Popover Component
+   ============================================ */
+
+.form0-popover-content {
+  z-index: 50;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--form0-field-border));
+  background-color: hsl(var(--form0-surface));
+  color: hsl(var(--form0-foreground));
+  box-shadow:
+    0 18px 45px hsla(var(--form0-shadow) / 0.28),
+    0 1px 0 hsla(var(--form0-shadow) / 0.15);
+  padding: 0.75rem;
+}
+
+.dark .form0-popover-content {
+  border-color: hsla(var(--form0-field-border-hover) / 0.6);
+}
+
+.form0-date-popover {
+  padding: 0;
+  min-width: 17rem;
+}
+
+/* ============================================
+   Calendar Component
+   ============================================ */
+
+.form0-calendar {
+  padding: 0.75rem;
+}
+
+/* Override react-day-picker default styles to prevent conflicts */
+.form0-calendar .rdp-button_reset {
+  border: none !important;
+  outline: none !important;
+}
+
+.form0-calendar .rdp-button {
+  border: none !important;
+}
+
+.form0-calendar .rdp-day {
+  border: none !important;
+}
+
+.form0-calendar .rdp-day_button {
+  border: none !important;
+  outline: none !important;
+}
+
+.form0-calendar__months {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form0-calendar__month {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form0-calendar__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.25rem 0.5rem;
+}
+
+.form0-calendar__caption-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: hsl(var(--form0-foreground));
+  text-transform: capitalize;
+  display: none; /* Hide when using dropdowns */
+}
+
+.form0-calendar__dropdowns {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.form0-calendar__dropdown {
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.25rem;
+  border: 1px solid hsl(var(--form0-field-border));
+  background-color: hsl(var(--form0-field-bg));
+  color: hsl(var(--form0-foreground));
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+  cursor: pointer;
+}
+
+.form0-calendar__dropdown:hover {
+  border-color: hsl(var(--form0-field-border-hover));
+}
+
+.form0-calendar__dropdown:focus-visible {
+  outline: none;
+  border-color: hsl(var(--form0-accent));
+  box-shadow: 0 0 0 2px hsla(var(--form0-accent) / 0.15);
+}
+
+.form0-calendar__dropdown--month {
+  min-width: 7rem;
+}
+
+.form0-calendar__dropdown--year {
+  min-width: 5rem;
+}
+
+.form0-calendar__nav {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.form0-calendar__nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: hsl(var(--form0-muted-foreground));
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.form0-calendar__nav-button:hover {
+  background-color: hsla(var(--form0-accent) / 0.14);
+  color: hsl(var(--form0-accent));
+  transform: translateY(0px);
+}
+
+.form0-calendar__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.form0-calendar__head-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.form0-calendar__head-cell {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: hsl(var(--form0-muted-foreground));
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form0-calendar__row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.form0-calendar__cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.form0-calendar__day {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  border: none !important;
+  outline: none !important;
+  background: transparent;
+  color: hsl(var(--form0-foreground));
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.form0-calendar__day:focus-visible {
+  outline: 2px solid hsl(var(--form0-accent)) !important;
+  outline-offset: 2px;
+}
+
+.form0-calendar__day:hover {
+  background-color: hsla(var(--form0-accent) / 0.18);
+  color: hsl(var(--form0-accent));
+}
+
+.form0-calendar__day--selected,
+.form0-calendar__day[aria-selected="true"] {
+  background-color: hsl(var(--form0-accent));
+  color: hsl(var(--form0-surface));
+  box-shadow: 0 10px 20px hsla(var(--form0-accent) / 0.35);
+}
+
+.form0-calendar__day--selected:hover,
+.form0-calendar__day[aria-selected="true"]:hover {
+  background-color: hsl(var(--form0-accent-hover));
+  color: hsl(var(--form0-surface));
+}
+
+.form0-calendar__day--today {
+  background-color: hsla(var(--form0-accent) / 0.12);
+  font-weight: 700;
+  color: hsl(var(--form0-accent));
+}
+
+.form0-calendar__day--disabled,
+.form0-calendar__day[aria-disabled="true"] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.form0-calendar__day--outside {
+  opacity: 0.35;
+  color: hsl(var(--form0-muted-foreground));
+}
+
+.form0-calendar__nav-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.form0-calendar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form0-calendar-footer {
+  border-top: 1px solid hsl(var(--form0-field-border));
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form0-calendar-today-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid hsl(var(--form0-field-border));
+  border-radius: 0.25rem;
+  background-color: hsl(var(--form0-field-bg));
+  color: hsl(var(--form0-foreground));
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.form0-calendar-today-button:hover {
+  background-color: hsla(var(--form0-accent) / 0.1);
+  border-color: hsl(var(--form0-accent));
+  color: hsl(var(--form0-accent));
+}
+
+.form0-calendar-today-button.selected {
+  background-color: hsla(var(--form0-accent) / 0.15);
+  border-color: hsl(var(--form0-accent));
+  color: hsl(var(--form0-accent));
+  font-weight: 600;
+}
+

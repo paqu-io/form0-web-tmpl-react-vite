@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import FormModal from "../components/FormModal";
 import FormSpotlight from "../components/FormSpotlight";
-import { myCustomTheme } from '../custom-theme.css.js';
 
 export default function Home() {
   const [theme, setTheme] = useState("standard");
-  const [labelWidth, setlabelWidth] = useState("30vw");
-  const [formWidth, setformWidth] = useState("30vw");
+  const [labelWidth, setlabelWidth] = useState(null); // null = use config default
+  const [formWidth, setformWidth] = useState(null); // null = use config default
   const [modalOpen, setModalOpen] = useState(false);
   const [spotlightOpen, setSpotlightOpen] = useState(false);
 

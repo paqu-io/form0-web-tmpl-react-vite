@@ -1,19 +1,19 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Form0Form from "../components/Form0Form";
+import form0Config from "../../form0.config.js";
 
 export default function FormPage() {
   const { theme } = useParams();
   const navigate = useNavigate();
-
-  const formWidth = "70vw";
-  const labelWidthPercent = 30;
   const isSimplifiedMode = theme === "simplified";
+
+  // Use config defaults for layout
+  const formWidth = form0Config.layout.formWidth;
 
   return (
     <div
       style={{
-        '--label-width': `${labelWidthPercent}%`,
         maxWidth: "100vw",
         width: formWidth,
         margin: "1rem auto",
