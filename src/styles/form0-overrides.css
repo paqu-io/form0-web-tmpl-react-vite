@@ -8,6 +8,20 @@
  */
 
 /* ============================================
+   form0 Layout Fixes
+   ============================================ */
+
+/*
+ * Fix for labelWidthPercent not being enforced in side layout.
+ * The labelRow container needs to respect the --label-width variable
+ * so that its children (the label) can use percentage widths correctly.
+ */
+[class*="field-renderer_labelInputRow"] > [class*="field-renderer_labelRow"] {
+  width: var(--label-width, 30%);
+  flex-shrink: 0;
+}
+
+/* ============================================
    form0 Brand Colors (CSS Variables)
    ============================================ */
 

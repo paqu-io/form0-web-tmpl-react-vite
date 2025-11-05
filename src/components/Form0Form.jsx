@@ -1,16 +1,8 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { FieldRegistryProvider, FormRenderer } from "form0-react";
 import schema from "../form.schema.js";
 import form0Config from "../../form0.config.js";
 import { resolveRenderer } from "../field-renderers/resolver.js";
-
-// Load custom theme if specified in config
-let customThemeModule = null;
-if (form0Config.theme.customTheme) {
-  // Dynamic import would go here in production
-  // For now, we'll handle this in a future enhancement
-  console.log(`[form0] Custom theme specified: ${form0Config.theme.customTheme}`);
-}
 
 export default function Form0Form({ 
   theme, 
@@ -24,6 +16,27 @@ export default function Form0Form({
   ...props 
 }) {
   const didLogSchema = useRef(false);
+  const [customTheme, setCustomTheme] = useState(null);
+  
+  // Dynamically load custom theme if specified in config
+  useEffect(() => {
+    if (form0Config.theme.customTheme) {
+      import(/* @vite-ignore */ form0Config.theme.customTheme)
+        .then((module) => {
+          // The theme export might be named differently, try common patterns
+          const themeExport = module.myCustomTheme || module.default || module;
+          setCustomTheme(themeExport);
+          console.log('[form0] Custom theme loaded successfully');
+        })
+        .catch((error) => {
+          console.error(
+            `[form0] Failed to load custom theme from "${form0Config.theme.customTheme}":`,
+            error
+          );
+          console.warn('[form0] Falling back to default theme');
+        });
+    }
+  }, []);
   
   // Resolve field renderers from config
   const renderers = useMemo(() => {
@@ -46,12 +59,14 @@ export default function Form0Form({
   const effectiveLabelWidthPercent = labelWidthPercent ?? form0Config.layout.labelWidthPercent;
   const effectiveFormWidth = formWidth ?? form0Config.layout.formWidth;
   const effectiveColorMode = colorMode ?? form0Config.theme.mode;
-  const effectiveTheme = customThemeModule || theme;
+  const effectiveTheme = customTheme || theme;
 
   // Build style object with CSS custom properties scoped to this form instance
+  // Note: labelWidthPercent is passed as a prop to FormRenderer, which applies it
+  // at the field level. We set it here as a fallback/default.
   const formStyle = {};
   if (effectiveLabelWidthPercent !== undefined) {
-    formStyle['--form0-label-width'] = `${effectiveLabelWidthPercent}%`;
+    formStyle['--label-width'] = `${effectiveLabelWidthPercent}%`;
   }
   if (effectiveFormWidth !== undefined) {
     formStyle['--form0-form-width'] = effectiveFormWidth;

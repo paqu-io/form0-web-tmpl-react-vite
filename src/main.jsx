@@ -10,8 +10,10 @@ import form0Config from '../form0.config.js';
 // These serve as defaults but can be overridden per-component
 const root = document.getElementById('root');
 if (root && form0Config.layout) {
+  // Note: form0-react's FieldRenderer uses --label-width (not --form0-label-width)
+  // for label sizing when labelPosition is 'side'
   if (form0Config.layout.labelWidthPercent !== undefined) {
-    root.style.setProperty('--form0-label-width', `${form0Config.layout.labelWidthPercent}%`);
+    root.style.setProperty('--label-width', `${form0Config.layout.labelWidthPercent}%`);
   }
   if (form0Config.layout.formWidth !== undefined) {
     root.style.setProperty('--form0-form-width', form0Config.layout.formWidth);

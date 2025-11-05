@@ -61,13 +61,19 @@ export default {
      * Path to custom vanilla-extract theme file
      * @type {string | null}
      * When null, form0-react's default theme is used.
-     * When set, import and use a custom theme object created with vanilla-extract.
+     * When set, the theme will be dynamically imported and applied to forms.
      *
      * Example: './src/themes/custom-example.css.js'
      *
-     * See src/themes/custom-example.css.js for how to create custom themes.
+     * The theme file should export a theme object created with vanilla-extract's
+     * createTheme() function. See src/themes/custom-example.css.js for a complete example.
+     *
+     * Note: The path is relative to the src/components/ directory where Form0Form.jsx
+     * resides, so use '../themes/...' from that perspective.
      */
     customTheme: null,
+    // Uncomment to test the example custom theme:
+    // customTheme: '../themes/custom-example.css.js',
   },
 
   /**

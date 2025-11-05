@@ -102,9 +102,11 @@ export default {
   - `'dark'`: Always use dark theme
   - `'system'`: Follow system preference (requires implementation)
 
-- **`customTheme`**: Path to a custom vanilla-extract theme file
+- **`customTheme`**: Path to a custom vanilla-extract theme file (relative to `src/components/`)
   - Set to `null` to use form0-react's default theme
-  - Example: `'./src/themes/custom-example.css.js'`
+  - Example: `'../themes/custom-example.css.js'`
+  - The theme is dynamically imported when the app loads
+  - Must export a theme created with `createTheme()` from `@vanilla-extract/css`
 
 #### Field Renderers
 
@@ -220,11 +222,14 @@ export const myBrandTheme = createTheme(vars, {
 ```javascript
 theme: {
   mode: 'light',
-  customTheme: './src/themes/my-brand-theme.css.js',
+  // Path is relative to src/components/ directory
+  customTheme: '../themes/my-brand-theme.css.js',
 }
 ```
 
-See `src/themes/custom-example.css.js` for a complete example.
+The theme will be automatically imported and applied when the form loads.
+
+See `src/themes/custom-example.css.js` for a complete example. To test it, uncomment the `customTheme` line in `form0.config.js`.
 
 ### Styling form0 Components
 
