@@ -30,10 +30,10 @@ export default function FormModal({ open, onOpenChange, theme, formWidth, labelW
           theme={theme}
           formWidth={effectiveFormWidth}
           labelWidthPercent={effectiveLabelWidth}
-          onSubmit={(vals) => {
-            alert(JSON.stringify(vals, null, 2));
-            onOpenChange(false);
-          }}
+          //onSubmit={(vals) => {
+          //  alert(JSON.stringify(vals, null, 2));
+          //  onOpenChange(false);
+          //}}
         />
         <DialogClose asChild>
           <Button>Close</Button>

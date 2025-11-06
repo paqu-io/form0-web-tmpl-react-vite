@@ -30,10 +30,10 @@ export default function FormSpotlight({ open, onOpenChange, theme, formWidth, la
           theme={theme}
           formWidth={effectiveFormWidth}
           labelWidthPercent={effectiveLabelWidth}
-          onSubmit={(vals) => {
-            alert(JSON.stringify(vals, null, 2));
-            onOpenChange(false);
-          }}
+          //onSubmit={(vals) => {
+          //  alert(JSON.stringify(vals, null, 2));
+          //  onOpenChange(false);
+          //}}
         />
         <DrawerClose asChild>
           <Button>Close</Button>

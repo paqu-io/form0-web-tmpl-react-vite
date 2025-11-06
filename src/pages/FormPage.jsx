@@ -24,7 +24,7 @@ export default function FormPage() {
       <Form0Form
         theme={theme}
         simplifiedMode={isSimplifiedMode}
-        onSubmit={(vals) => alert(JSON.stringify(vals, null, 2))}
+        //onSubmit={(vals) => alert(JSON.stringify(vals, null, 2))}
         onSimplifiedNavigation={(navigation) => {
           console.log('Simplified navigation:', navigation);
         }}

@@ -13,6 +13,7 @@ export default function Form0Form({
   labelWidthPercent, 
   simplifiedMode = false,
   onSimplifiedNavigation,
+  debug = false,
   ...props 
 }) {
   const didLogSchema = useRef(false);
@@ -80,9 +81,16 @@ export default function Form0Form({
       <FieldRegistryProvider renderers={renderers}>
         <FormRenderer
           schema={schema}
-          debug
+          debug={debug}
           initialValues={{ age: 18 }}
-          onSubmit={onSubmit || ((vals) => alert(JSON.stringify(vals, null, 2)))}
+          onSubmit={
+            onSubmit ||
+            ((vals) => {
+              console.info('🚀 [RECORD SUBMIT] Starting form submission...');
+              console.info('📋 [STRUCTURED RECORD] Generated structured JSON record:');
+              console.log(vals);
+            })
+          }
           onSchemaReady={(schemaWithKeys) => {
             if (!didLogSchema.current) {
               console.log(schemaWithKeys);
