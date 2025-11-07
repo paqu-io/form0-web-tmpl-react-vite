@@ -40,43 +40,61 @@ export default {
      * Can be any valid CSS width value (px, %, vw, rem, etc.)
      */
     formWidth: '70vw',
-  },
 
-  /**
-   * Presentation presets by variant
-   *
-   * Each entry can override the theme name as well as layout properties
-   * that differ from the global defaults above. Omitted values fall back to
-   * the layout + theme defaults.
-   */
-  presentations: {
-    standard: {
-      theme: 'standard',
-      layout: {
+    /**
+     * Presentation Variants
+     *
+     * Define layout overrides for different presentation contexts.
+     * Each variant automatically uses a theme with the same name (e.g., 'standard' variant uses 'standard' theme).
+     *
+     * Available variants:
+     * - Page variants: 'standard', 'simplified' (full-page dedicated views)
+     * - Overlay variants: 'modal', 'spotlight' (overlay components that appear over other content)
+     *
+     * Any layout property not specified in a variant will fall back to the global defaults above.
+     */
+    presentations: {
+      /**
+       * Standard page variant
+       * Full-featured form display with all fields and standard spacing.
+       * Used for dedicated form pages with complete functionality.
+       */
+      standard: {
         formWidth: '70vw',
         labelPosition: 'side',
         labelWidthPercent: 30,
       },
-    },
-    simplified: {
-      theme: 'simplified',
-      layout: {
+
+      /**
+       * Simplified page variant
+       * One-question-at-a-time wizard-style form display.
+       * Uses the 'simplified' theme with step-by-step navigation.
+       * 
+       * Note: In simplified mode, form0-react hardcodes labelPosition to 'top'
+       * and labelWidthPercent to 100% for individual fields. Only formWidth
+       * affects the layout in this mode.
+       */
+      simplified: {
         formWidth: '65vw',
-        labelPosition: 'side',
-        labelWidthPercent: 100,
       },
-    },
-    modal: {
-      theme: 'standard',
-      layout: {
+
+      /**
+       * Modal overlay variant
+       * Compact form display for modal dialogs.
+       * Slightly wider labels to accommodate modal width constraints.
+       */
+      modal: {
         formWidth: '60vw',
         labelPosition: 'side',
         labelWidthPercent: 35,
       },
-    },
-    spotlight: {
-      theme: 'standard',
-      layout: {
+
+      /**
+       * Spotlight (drawer) overlay variant
+       * Form display for slide-in drawers from the side.
+       * Narrower width optimized for drawer presentation.
+       */
+      spotlight: {
         formWidth: '55vw',
         labelPosition: 'side',
         labelWidthPercent: 35,

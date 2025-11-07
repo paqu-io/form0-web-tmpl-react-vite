@@ -8,30 +8,36 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import Form0Form from './Form0Form';
-import form0Config from '../../form0.config.js';
+import { mergeLayoutProps } from '../lib/presentation-settings.js';
 
 export default function FormSpotlight({
   open,
   onOpenChange,
   schema,
-  theme = 'standard',
+  theme,
   formTitle = 'Form',
   formWidth,
   labelWidthPercent,
   labelPosition,
 }) {
-  // Use config defaults when props not provided
-  const effectiveFormWidth = formWidth ?? form0Config.layout.formWidth;
-  const effectiveLabelWidth = labelWidthPercent ?? form0Config.layout.labelWidthPercent;
-  const effectiveLabelPosition = labelPosition ?? form0Config.layout.labelPosition;
+  const layoutConfig = mergeLayoutProps(
+    { theme, formWidth, labelWidthPercent, labelPosition },
+    'spotlight',
+  );
 
   return (
-    <Drawer open={open} onOpenChange={onOpenChange} direction="right">
+    <Drawer
+      open={open}
+      onOpenChange={onOpenChange}
+      direction="right"
+      modal={false}
+      shouldScaleBackground={false}
+    >
       <DrawerContent
         className="max-h-[100vh] overflow-y-auto overflow-x-hidden p-6 rounded-l-lg"
         style={{
-          width: effectiveFormWidth, 
-          maxWidth: effectiveFormWidth,
+          width: layoutConfig.formWidth,
+          maxWidth: layoutConfig.formWidth,
         }}
         onPointerDownOutside={(e) => {
           e.preventDefault();
@@ -43,14 +49,10 @@ export default function FormSpotlight({
         </DrawerHeader>
         <Form0Form
           schema={schema}
-          theme={theme}
-          formWidth={effectiveFormWidth}
-          labelWidthPercent={effectiveLabelWidth}
-          labelPosition={effectiveLabelPosition}
-          //onSubmit={(vals) => {
-          //  alert(JSON.stringify(vals, null, 2));
-          //  onOpenChange(false);
-          //}}
+          theme={layoutConfig.theme}
+          formWidth={layoutConfig.formWidth}
+          labelWidthPercent={layoutConfig.labelWidthPercent}
+          labelPosition={layoutConfig.labelPosition}
         />
         <DrawerClose asChild>
           <Button>Close</Button>

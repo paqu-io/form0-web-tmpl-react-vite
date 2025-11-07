@@ -1,6 +1,10 @@
 export const PAGE_VARIANTS = ['standard', 'simplified'];
 export const OVERLAY_VARIANTS = ['modal', 'spotlight'];
 
+// Presentation key constants (used for looking up presentation settings)
+export const DEFAULT_PAGE_VARIANT_KEY = 'standard';
+export const DEFAULT_OVERLAY_VARIANT_KEY = 'modal';
+
 const forms = [
   {
     id: 'demo-form',

@@ -18,7 +18,7 @@ export default function Form0Form({
 }) {
   const didLogSchema = useRef(false);
   const [customTheme, setCustomTheme] = useState(null);
-  
+
   // Dynamically load custom theme if specified in config
   useEffect(() => {
     if (form0Config.theme.customTheme) {
@@ -32,17 +32,17 @@ export default function Form0Form({
         .catch((error) => {
           console.error(
             `[form0] Failed to load custom theme from "${form0Config.theme.customTheme}":`,
-            error
+            error,
           );
           console.warn('[form0] Falling back to default theme');
         });
     }
   }, []);
-  
+
   // Resolve field renderers from config
   const renderers = useMemo(() => {
     const resolved = {};
-    
+
     if (form0Config.fieldRenderers) {
       Object.entries(form0Config.fieldRenderers).forEach(([fieldType, rendererId]) => {
         const component = resolveRenderer(rendererId);
@@ -51,7 +51,7 @@ export default function Form0Form({
         }
       });
     }
-    
+
     return resolved;
   }, []);
 
