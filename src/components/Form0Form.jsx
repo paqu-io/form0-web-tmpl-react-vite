@@ -1,10 +1,19 @@
-import { useMemo, useRef, useState, useEffect } from 'react';
+import { useMemo, useRef, useState, useEffect, useCallback } from 'react';
 import { FieldRegistryProvider, FormRenderer } from 'form0-react';
+import { createStructuredRecord, flattenFields } from 'form0-core';
 import form0Config from '../../form0.config.js';
 import { resolveRenderer } from '../field-renderers/resolver.js';
+import {
+  injectMediaFieldUUIDs,
+  ensureRecordOptionIds,
+  regenerateRepeatableRecordIds,
+} from '../lib/record-utils.js';
+
+const FIELD_KEY_MODE = form0Config.output?.useKeys ? 'prefer-key' : 'data-name';
 
 export default function Form0Form({
   schema,
+  initialValues,
   theme,
   colorMode,
   onSubmit,
@@ -18,6 +27,9 @@ export default function Form0Form({
 }) {
   const didLogSchema = useRef(false);
   const [customTheme, setCustomTheme] = useState(null);
+
+  const schemaElements = schema?.form?.elements ?? [];
+  const flattenedFields = useMemo(() => flattenFields(schemaElements), [schemaElements]);
 
   // Dynamically load custom theme if specified in config
   useEffect(() => {
@@ -55,6 +67,51 @@ export default function Form0Form({
     return resolved;
   }, []);
 
+  const defaultStructuredSubmit = useCallback(
+    (vals) => {
+      console.info('🚀 [RECORD SUBMIT] Starting form submission...');
+
+      if (!schema?.form) {
+        console.info('📋 [STRUCTURED RECORD] Generated structured JSON record (raw values):');
+        console.log(vals);
+        return;
+      }
+
+      try {
+        const statusFieldName = schema.form.status_field?.data_name ?? null;
+        const valuesWithMediaIds = injectMediaFieldUUIDs(vals, flattenedFields);
+
+        const recordOptions = ensureRecordOptionIds({
+          fieldKeyMode: FIELD_KEY_MODE,
+          originalElements: schemaElements,
+          title_field: schema.form.title_field || null,
+          status_field: schema.form.status_field || null,
+          form_id: schema.form.id || null,
+        });
+
+        if (statusFieldName) {
+          recordOptions['@status'] = valuesWithMediaIds[statusFieldName] ?? null;
+          delete valuesWithMediaIds[statusFieldName];
+        }
+
+        const structuredRecord = createStructuredRecord(
+          { values: valuesWithMediaIds },
+          flattenedFields,
+          recordOptions,
+        );
+        regenerateRepeatableRecordIds(structuredRecord);
+
+        console.info('📋 [STRUCTURED RECORD] Generated structured JSON record:');
+        console.log(structuredRecord);
+      } catch (error) {
+        console.error('[form0] Failed to build structured record. Falling back to raw values.', error);
+        console.info('📋 [STRUCTURED RECORD] Generated structured JSON record (raw values):');
+        console.log(vals);
+      }
+    },
+    [flattenedFields, schema, schemaElements],
+  );
+
   // Merge config defaults with component props (props take precedence)
   const effectiveLabelPosition = labelPosition ?? form0Config.layout.labelPosition;
   const effectiveLabelWidthPercent = labelWidthPercent ?? form0Config.layout.labelWidthPercent;
@@ -90,15 +147,8 @@ export default function Form0Form({
         <FormRenderer
           schema={schema}
           debug={debug}
-          initialValues={{ age: 18 }}
-          onSubmit={
-            onSubmit ||
-            ((vals) => {
-              console.info('🚀 [RECORD SUBMIT] Starting form submission...');
-              console.info('📋 [STRUCTURED RECORD] Generated structured JSON record:');
-              console.log(vals);
-            })
-          }
+          initialValues={initialValues}
+          onSubmit={onSubmit || defaultStructuredSubmit}
           onSchemaReady={(schemaWithKeys) => {
             if (!didLogSchema.current) {
               console.log(schemaWithKeys);

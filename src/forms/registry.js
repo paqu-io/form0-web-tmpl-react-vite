@@ -12,6 +12,9 @@ const forms = [
     description: 'A showcase schema with a bit of everything to exercise the renderer.',
     tags: ['demo', 'kitchen-sink'],
     loadSchema: () => import('./demo/schema.json'),
+    initialValues: {
+      age: 18,
+    },
   },
   {
     id: 'demo-form-bis',

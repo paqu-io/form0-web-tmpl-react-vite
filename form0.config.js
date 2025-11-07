@@ -184,7 +184,7 @@ export default {
      *
      * CLI-compatible setting.
      */
-    useKeys: true,
+    useKeys: false,
   },
 
   /**

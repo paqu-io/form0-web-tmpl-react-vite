@@ -78,6 +78,7 @@ export default function FormPage() {
       {schema && (
         <Form0Form
           schema={schema}
+          initialValues={formDefinition.initialValues}
           theme={pagePresentation.theme}
           formWidth={pagePresentation.layout.formWidth}
           labelWidthPercent={pagePresentation.layout.labelWidthPercent}
@@ -103,4 +104,3 @@ export default function FormPage() {
     </div>
   );
 }
-
