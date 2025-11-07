@@ -59,6 +59,26 @@ export default {
     formWidth: '70vw',           // Any valid CSS width
   },
 
+  // Per-variant presentation presets (theme + layout overrides)
+  presentations: {
+    standard: {
+      theme: 'standard',
+      layout: { formWidth: '70vw', labelPosition: 'side', labelWidthPercent: 30 },
+    },
+    simplified: {
+      theme: 'simplified',
+      layout: { formWidth: '65vw', labelPosition: 'top', labelWidthPercent: 100 },
+    },
+    modal: {
+      theme: 'standard',
+      layout: { formWidth: '60vw', labelPosition: 'side', labelWidthPercent: 35 },
+    },
+    spotlight: {
+      theme: 'standard',
+      layout: { formWidth: '55vw', labelPosition: 'side', labelWidthPercent: 35 },
+    },
+  },
+
   // Theme settings
   theme: {
     mode: 'light',               // 'light' | 'dark' | 'system'
@@ -94,6 +114,13 @@ export default {
 - **`labelWidthPercent`**: Width percentage for labels when positioned on the side (0-100)
 
 - **`formWidth`**: Default width for form containers (any valid CSS width value)
+
+#### Presentations
+
+- Provide per-variant overrides for layout + theme without touching component code.
+- Each key corresponds to a presentation (`standard`, `simplified`, `modal`, `spotlight`).
+- `theme`: which form0-react theme string to use for the variant.
+- `layout`: optional overrides for `formWidth`, `labelPosition`, and `labelWidthPercent`.
 
 #### Theme
 
@@ -139,7 +166,12 @@ form0-test1/
 │   │   └── form0-overrides.css    # Custom form0 styling
 │   ├── themes/
 │   │   └── custom-example.css.js  # Example custom theme
-│   ├── form.schema.js             # Sample form schema
+│   ├── forms/
+│   │   ├── registry.js            # Multi-form metadata + loaders
+│   │   ├── use-form-schema.js     # Hook for loading schema JSON
+│   │   └── demo/
+│   │       └── schema.json        # Sample schema used across variants
+│   ├── form.schema.js             # Legacy shim exporting the demo schema
 │   ├── index.css                  # Global app styles + Tailwind
 │   ├── App.css                    # App-specific styles
 │   └── main.jsx                   # App entry point

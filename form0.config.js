@@ -43,6 +43,48 @@ export default {
   },
 
   /**
+   * Presentation presets by variant
+   *
+   * Each entry can override the theme name as well as layout properties
+   * that differ from the global defaults above. Omitted values fall back to
+   * the layout + theme defaults.
+   */
+  presentations: {
+    standard: {
+      theme: 'standard',
+      layout: {
+        formWidth: '70vw',
+        labelPosition: 'side',
+        labelWidthPercent: 30,
+      },
+    },
+    simplified: {
+      theme: 'simplified',
+      layout: {
+        formWidth: '65vw',
+        labelPosition: 'side',
+        labelWidthPercent: 100,
+      },
+    },
+    modal: {
+      theme: 'standard',
+      layout: {
+        formWidth: '60vw',
+        labelPosition: 'side',
+        labelWidthPercent: 35,
+      },
+    },
+    spotlight: {
+      theme: 'standard',
+      layout: {
+        formWidth: '55vw',
+        labelPosition: 'side',
+        labelWidthPercent: 35,
+      },
+    },
+  },
+
+  /**
    * Theme Configuration
    *
    * Controls the visual appearance of form0 forms.
@@ -87,7 +129,7 @@ export default {
      * @type {string}
      * Relative to project root. Used by tooling and routing logic.
      */
-    directory: './src',
+    directory: './src/forms',
   },
 
   /**
@@ -124,7 +166,7 @@ export default {
      *
      * CLI-compatible setting.
      */
-    useKeys: false,
+    useKeys: true,
   },
 
   /**
@@ -142,4 +184,3 @@ export default {
     showElementLabels: false,
   },
 };
-

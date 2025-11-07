@@ -29,16 +29,17 @@
 
 // export default App;
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import FormPage from "./pages/FormPage";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import FormPage from './pages/FormPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/form/:theme" element={<FormPage />} />
+        <Route path="/:formId" element={<FormPage />} />
+        <Route path="/:formId/:variant" element={<FormPage />} />
       </Routes>
     </Router>
   );

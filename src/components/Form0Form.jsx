@@ -1,20 +1,20 @@
-import { useMemo, useRef, useState, useEffect } from "react";
-import { FieldRegistryProvider, FormRenderer } from "form0-react";
-import schema from "../form.schema.js";
-import form0Config from "../../form0.config.js";
-import { resolveRenderer } from "../field-renderers/resolver.js";
+import { useMemo, useRef, useState, useEffect } from 'react';
+import { FieldRegistryProvider, FormRenderer } from 'form0-react';
+import form0Config from '../../form0.config.js';
+import { resolveRenderer } from '../field-renderers/resolver.js';
 
-export default function Form0Form({ 
-  theme, 
-  colorMode, 
-  onSubmit, 
-  labelPosition, 
-  formWidth, 
-  labelWidthPercent, 
+export default function Form0Form({
+  schema,
+  theme,
+  colorMode,
+  onSubmit,
+  labelPosition,
+  formWidth,
+  labelWidthPercent,
   simplifiedMode = false,
   onSimplifiedNavigation,
   debug = false,
-  ...props 
+  ...props
 }) {
   const didLogSchema = useRef(false);
   const [customTheme, setCustomTheme] = useState(null);
@@ -74,6 +74,14 @@ export default function Form0Form({
   }
   if (effectiveLabelPosition !== undefined) {
     formStyle['--form0-label-position'] = effectiveLabelPosition;
+  }
+
+  if (!schema) {
+    return (
+      <div role="status" style={{ padding: '1rem', textAlign: 'center' }}>
+        Loading schema...
+      </div>
+    );
   }
 
   return (
