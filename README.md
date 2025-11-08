@@ -171,7 +171,6 @@ form0-test1/
 │   │   ├── use-form-schema.js     # Hook for loading schema JSON
 │   │   └── demo/
 │   │       └── schema.json        # Sample schema used across variants
-│   ├── form.schema.js             # Legacy shim exporting the demo schema
 │   ├── index.css                  # Global app styles + Tailwind
 │   ├── App.css                    # App-specific styles
 │   └── main.jsx                   # App entry point
