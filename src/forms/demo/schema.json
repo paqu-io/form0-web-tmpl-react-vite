@@ -85,6 +85,40 @@
             "key": "4db012c8"
           },
           {
+            "type": "Section",
+            "data_name": "test_section",
+            "label": "Test section",
+            "display": "inline",
+            "description": null,
+            "description_mode": null,
+            "visible": true,
+            "visible_conditions": null,
+            "elements": [
+              {
+                "type": "TextField",
+                "data_name": "long_comment",
+                "label": "Long comment",
+                "display": "default",
+                "description": null,
+                "description_mode": null,
+                "required": true,
+                "required_conditions": null,
+                "visible": true,
+                "visible_conditions": null,
+                "read_only": false,
+                "read_only_conditions": null,
+                "default_value": null,
+                "pattern": null,
+                "pattern_description": null,
+                "supporting_image": false,
+                "supporting_image_path": null,
+                "supporting_image_display": null,
+                "key": "4db013c8"
+              }
+            ],
+            "key": "4db087aa"
+          },
+          {
             "type": "TextField",
             "data_name": "last_name",
             "label": "last Name",
