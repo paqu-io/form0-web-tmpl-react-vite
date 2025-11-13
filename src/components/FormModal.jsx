@@ -8,6 +8,8 @@ import {
 import Form0Form from './Form0Form';
 import { mergeLayoutProps } from '../lib/presentation-settings.js';
 
+const DIALOG_HORIZONTAL_PADDING_REM = 3; // tailwind p-6 => 1.5rem each side
+
 export default function FormModal({
   open,
   onOpenChange,
@@ -23,13 +25,18 @@ export default function FormModal({
     'modal',
   );
 
+  const paddedModalWidth = layoutConfig.formWidth
+    ? `calc(${layoutConfig.formWidth} + ${DIALOG_HORIZONTAL_PADDING_REM}rem)`
+    : undefined;
+  const viewportMaxWidth = 'calc(100vw - 2rem)';
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="max-h-[97vh] overflow-y-auto overflow-x-hidden"
         style={{
-          width: layoutConfig.formWidth,
-          maxWidth: layoutConfig.formWidth,
+          width: paddedModalWidth,
+          maxWidth: viewportMaxWidth,
           boxSizing: 'border-box',
         }}
         onPointerDownOutside={(e) => {
