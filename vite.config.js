@@ -14,6 +14,12 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  server: {
+    fs: {
+      // Allow serving files from parent directory (for local file dependencies)
+      allow: ['..'],
+    },
+  },
   resolve: {
     // preserveSymlinks: true,
     alias: {
