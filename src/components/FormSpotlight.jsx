@@ -1,12 +1,4 @@
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerClose,
-} from '@/components/ui/drawer';
-import { Button } from '@/components/ui/button';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from '@/components/ui/drawer';
 import Form0Form from './Form0Form';
 import { mergeLayoutProps } from '../lib/presentation-settings.js';
 
@@ -53,10 +45,9 @@ export default function FormSpotlight({
           formWidth={layoutConfig.formWidth}
           labelWidthPercent={layoutConfig.labelWidthPercent}
           labelPosition={layoutConfig.labelPosition}
+          placement="form-spotlight"
+          onRequestClose={() => onOpenChange(false)}
         />
-        <DrawerClose asChild>
-          <Button>Close</Button>
-        </DrawerClose>
       </DrawerContent>
     </Drawer>
   );

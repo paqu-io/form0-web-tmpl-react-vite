@@ -4,9 +4,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import Form0Form from './Form0Form';
 import { mergeLayoutProps } from '../lib/presentation-settings.js';
 
@@ -28,10 +26,11 @@ export default function FormModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-h-[97vh] overflow-y-auto"
+        className="max-h-[97vh] overflow-y-auto overflow-x-hidden"
         style={{
           width: layoutConfig.formWidth,
           maxWidth: layoutConfig.formWidth,
+          boxSizing: 'border-box',
         }}
         onPointerDownOutside={(e) => {
           e.preventDefault();
@@ -47,10 +46,9 @@ export default function FormModal({
           formWidth={layoutConfig.formWidth}
           labelWidthPercent={layoutConfig.labelWidthPercent}
           labelPosition={layoutConfig.labelPosition}
+          placement="form-modal"
+          onRequestClose={() => onOpenChange(false)}
         />
-        <DialogClose asChild>
-          <Button>Close</Button>
-        </DialogClose>
       </DialogContent>
     </Dialog>
   );

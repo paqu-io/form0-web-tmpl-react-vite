@@ -22,6 +22,7 @@ export default function FormPage() {
   // Default to standard variant if no variant specified
   const pageVariant = variant || DEFAULT_PAGE_VARIANT_KEY;
   const isValidVariant = PAGE_VARIANTS.includes(pageVariant);
+  const formPlacement = pageVariant === 'simplified' ? 'simplified-page' : 'form-page';
 
   const pagePresentation = getPresentationSettings(pageVariant);
 
@@ -87,6 +88,7 @@ export default function FormPage() {
           onSimplifiedNavigation={(navigation) => {
             console.log('Simplified navigation:', navigation);
           }}
+          placement={formPlacement}
         />
       )}
 

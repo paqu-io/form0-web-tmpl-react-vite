@@ -1,6 +1,6 @@
 {
   "form": {
-    "name": "Demo Enrollment",
+    "name": "Demo Enrollment, this is a very long title to see what happens when the title is too long. Let's make it even longer.",
     "description": "This is a test description",
     "id": "demo-form",
     "status_field": {
@@ -784,6 +784,61 @@
             "supporting_image_path": null,
             "supporting_image_display": null,
             "key": "9a264ea0"
+          },
+          {
+            "type": "TextField",
+            "data_name": "comments_additional",
+            "label": "Additional comments",
+            "display": "default",
+            "description": null,
+            "description_mode": null,
+            "required": false,
+            "required_conditions": null,
+            "visible": true,
+            "visible_conditions": null,
+            "read_only": false,
+            "read_only_conditions": null,
+            "default_value": null,
+            "pattern": null,
+            "pattern_description": null,
+            "supporting_image": false,
+            "supporting_image_path": null,
+            "supporting_image_display": null,
+            "key": "9a264ea2"
+          },
+          {
+            "type": "Section",
+            "data_name": "section_drill_bis",
+            "label": "Drilldown section test",
+            "display": "drilldown",
+            "description": null,
+            "description_mode": null,
+            "visible": true,
+            "visible_conditions": null,
+            "elements": [
+              {
+                "type": "TextField",
+                "data_name": "comments_bis",
+                "label": "Comments",
+                "display": "default",
+                "description": null,
+                "description_mode": null,
+                "required": false,
+                "required_conditions": null,
+                "visible": true,
+                "visible_conditions": null,
+                "read_only": false,
+                "read_only_conditions": null,
+                "default_value": null,
+                "pattern": null,
+                "pattern_description": null,
+                "supporting_image": false,
+                "supporting_image_path": null,
+                "supporting_image_display": null,
+                "key": "9a264ea1"
+              }
+            ],
+            "key": "4c958444"
           }
         ],
         "key": "4c958746"

@@ -22,6 +22,8 @@ export default function Form0Form({
   labelWidthPercent,
   simplifiedMode = false,
   onSimplifiedNavigation,
+  placement = 'form-page',
+  onRequestClose,
   debug = false,
   ...props
 }) {
@@ -162,9 +164,11 @@ export default function Form0Form({
           formWidth={effectiveFormWidth}
           simplifiedMode={simplifiedMode}
           onSimplifiedNavigation={onSimplifiedNavigation}
+          formPlacement={placement}
+          onRequestClose={onRequestClose}
           {...props}
         />
       </FieldRegistryProvider>
     </div>
   );
-} 
+}
