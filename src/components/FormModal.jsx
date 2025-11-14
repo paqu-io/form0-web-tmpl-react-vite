@@ -37,6 +37,12 @@ export default function FormModal({
         style={{
           width: paddedModalWidth,
           maxWidth: viewportMaxWidth,
+          height: '97vh',
+          maxHeight: '97vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'stretch',
           boxSizing: 'border-box',
         }}
         onPointerDownOutside={(e) => {
