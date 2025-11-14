@@ -70,7 +70,7 @@ export default function Form0Form({
   }, []);
 
   const defaultStructuredSubmit = useCallback(
-    (vals) => {
+    (vals, meta = {}) => {
       console.info('🚀 [RECORD SUBMIT] Starting form submission...');
 
       if (!schema?.form) {
@@ -97,7 +97,10 @@ export default function Form0Form({
         }
 
         const structuredRecord = createStructuredRecord(
-          { values: valuesWithMediaIds },
+          {
+            values: valuesWithMediaIds,
+            repeatable: meta?.repeatable || {},
+          },
           flattenedFields,
           recordOptions,
         );
@@ -108,7 +111,7 @@ export default function Form0Form({
       } catch (error) {
         console.error('[form0] Failed to build structured record. Falling back to raw values.', error);
         console.info('📋 [STRUCTURED RECORD] Generated structured JSON record (raw values):');
-        console.log(vals);
+        console.log({ values: vals, repeatable: meta?.repeatable || {} });
       }
     },
     [flattenedFields, schema, schemaElements],
