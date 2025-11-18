@@ -145,14 +145,14 @@ export default {
     /**
      * Default interaction mode when loading a form.
      * @type {'edit' | 'view' | 'readonly'}
-     * - 'edit': Start in Edit mode (Scenario 1)
-     * - 'view' | 'readonly': Start in View mode (Scenario 2)
+     * - 'edit': Start in Edit mode
+     * - 'view' | 'readonly': Start in View mode
      */
-    defaultMode: 'edit',
+    defaultMode: 'view',
 
     /**
-     * Automatically close modal/drawer overlays after successful submit
-     * when the form is in Scenario 1 (defaultMode === 'edit').
+     * Automatically close modal/drawer overlays after successful submit,
+     * regardless of the initial interaction mode.
      */
     closeOverlayOnSubmit: true,
   },
