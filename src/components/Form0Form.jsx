@@ -25,6 +25,8 @@ export default function Form0Form({
   placement = 'form-page',
   onRequestClose,
   debug = false,
+  mode: modeOverride,
+  autoCloseOverlayOnSubmit: autoCloseOverride,
   ...props
 }) {
   const didLogSchema = useRef(false);
@@ -146,6 +148,25 @@ export default function Form0Form({
     );
   }
 
+  const resolveMode = (value) => {
+    if (value === 'readonly' || value === 'view') {
+      return 'readonly';
+    }
+    if (value === 'edit') {
+      return 'edit';
+    }
+    return undefined;
+  };
+
+  const configInteractionMode = resolveMode(form0Config.interaction?.defaultMode) || 'edit';
+  const effectiveMode = resolveMode(modeOverride) || configInteractionMode;
+  const configCloseOverlay =
+    typeof form0Config.interaction?.closeOverlayOnSubmit === 'boolean'
+      ? form0Config.interaction?.closeOverlayOnSubmit
+      : false;
+  const effectiveCloseOverlay =
+    typeof autoCloseOverride === 'boolean' ? autoCloseOverride : configCloseOverlay;
+
   return (
     <div style={formStyle}>
       <FieldRegistryProvider renderers={renderers}>
@@ -169,6 +190,8 @@ export default function Form0Form({
           onSimplifiedNavigation={onSimplifiedNavigation}
           formPlacement={placement}
           onRequestClose={onRequestClose}
+          mode={effectiveMode}
+          autoCloseOverlayOnSubmit={effectiveCloseOverlay}
           {...props}
         />
       </FieldRegistryProvider>

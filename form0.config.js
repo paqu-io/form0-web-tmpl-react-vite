@@ -137,6 +137,27 @@ export default {
   },
 
   /**
+   * Interaction Behavior
+   *
+   * Controls how forms enter view/edit modes and how overlays respond to submissions.
+   */
+  interaction: {
+    /**
+     * Default interaction mode when loading a form.
+     * @type {'edit' | 'view' | 'readonly'}
+     * - 'edit': Start in Edit mode (Scenario 1)
+     * - 'view' | 'readonly': Start in View mode (Scenario 2)
+     */
+    defaultMode: 'edit',
+
+    /**
+     * Automatically close modal/drawer overlays after successful submit
+     * when the form is in Scenario 1 (defaultMode === 'edit').
+     */
+    closeOverlayOnSubmit: true,
+  },
+
+  /**
    * Schema Management
    *
    * Configures where form schemas are stored and how they're loaded.
