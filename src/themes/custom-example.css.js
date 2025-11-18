@@ -42,8 +42,10 @@ export const myCustomTheme = createTheme(vars, {
   borderRadius: '16px',
   fontSize: {
     base: '1.1rem',
+    button: '1.1rem',
     label: '1.1rem',
     section: '1.25rem',
+
   },
   spacing: {
     sm: '1rem',
@@ -51,4 +53,3 @@ export const myCustomTheme = createTheme(vars, {
     lg: '3rem',
   },
 });
-

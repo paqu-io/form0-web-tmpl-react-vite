@@ -71,7 +71,7 @@ export default function Form0Form({
 
   const defaultStructuredSubmit = useCallback(
     (vals, meta = {}) => {
-      console.info('🚀 [RECORD SUBMIT] Starting form submission...');
+      console.info('🚀 [RECORD SUBMIT] Starting record submission...');
 
       if (!schema?.form) {
         console.info('📋 [STRUCTURED RECORD] Generated structured JSON record (raw values):');
