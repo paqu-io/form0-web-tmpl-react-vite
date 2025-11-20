@@ -27,6 +27,7 @@ export default function Form0Form({
   debug = false,
   mode: modeOverride,
   autoCloseOverlayOnSubmit: autoCloseOverride,
+  engineMode: engineModeOverride,
   ...props
 }) {
   const didLogSchema = useRef(false);
@@ -166,6 +167,9 @@ export default function Form0Form({
       : false;
   const effectiveCloseOverlay =
     typeof autoCloseOverride === 'boolean' ? autoCloseOverride : configCloseOverlay;
+  const configEngineMode =
+    form0Config.engine?.mode === 'worker' ? 'worker' : 'main-thread';
+  const effectiveEngineMode = engineModeOverride || configEngineMode;
 
   return (
     <div style={formStyle}>
@@ -192,6 +196,7 @@ export default function Form0Form({
           onRequestClose={onRequestClose}
           mode={effectiveMode}
           autoCloseOverlayOnSubmit={effectiveCloseOverlay}
+          engineMode={effectiveEngineMode}
           {...props}
         />
       </FieldRegistryProvider>

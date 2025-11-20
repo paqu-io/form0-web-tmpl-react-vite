@@ -103,6 +103,17 @@ export default {
   },
 
   /**
+   * Engine Configuration
+   *
+   * Controls how the form engine executes inside the browser.
+   * - 'main-thread': run evaluations on the React/UI thread (current default)
+   * - 'worker': offload engine evaluations to a Web Worker when supported
+   */
+  engine: {
+    mode: 'worker',
+  },
+
+  /**
    * Theme Configuration
    *
    * Controls the visual appearance of form0 forms.

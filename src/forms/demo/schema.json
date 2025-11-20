@@ -700,6 +700,46 @@
         "key": "df64841e"
       },
       {
+        "type": "TextField",
+        "data_name": "count_test_input",
+        "label": "COUNT() test input",
+        "display": "default",
+        "description": null,
+        "description_mode": null,
+        "required": false,
+        "required_conditions": null,
+        "visible": true,
+        "visible_conditions": null,
+        "read_only": false,
+        "read_only_conditions": null,
+        "default_value": null,
+        "pattern": null,
+        "pattern_description": null,
+        "supporting_image": false,
+        "supporting_image_path": null,
+        "supporting_image_display": null,
+        "key": "53cc4c22"
+      },
+      {
+        "type": "CalculatedField",
+        "data_name": "count_test",
+        "label": "COUNT() test",
+        "display": {
+          "style": "text"
+        },
+        "description": null,
+        "description_mode": null,
+        "required": false,
+        "visible": true,
+        "visible_conditions": null,
+        "read_only": true,
+        "calculate": "COUNT(ARRAY($count_test_input))",
+        "supporting_image": false,
+        "supporting_image_path": null,
+        "supporting_image_display": null,
+        "key": "df648483"
+      },
+      {
         "type": "CalculatedField",
         "data_name": "calc_test",
         "label": "calc_test",
@@ -723,7 +763,7 @@
         "data_name": "calc_test_new",
         "label": "calc_test_new",
         "display": {
-          "style": "text"
+          "style": "numeric"
         },
         "description": null,
         "description_mode": null,
