@@ -111,6 +111,13 @@ export default {
    */
   engine: {
     mode: 'worker',
+    /**
+     * Store strategy for React bindings
+     * @type {'snapshot' | 'selector'}
+     * - 'snapshot': clone full engine state into React state on each eval (current behavior)
+     * - 'selector': use per-field subscriptions to reduce re-renders
+     */
+    store: 'snapshot', //DON'T USE 'selector' for now since validation messages show in Navigation Tree but not under each field form.
   },
 
   /**

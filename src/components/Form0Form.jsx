@@ -28,6 +28,7 @@ export default function Form0Form({
   mode: modeOverride,
   autoCloseOverlayOnSubmit: autoCloseOverride,
   engineMode: engineModeOverride,
+  engineStoreMode: engineStoreModeOverride,
   ...props
 }) {
   const didLogSchema = useRef(false);
@@ -170,6 +171,9 @@ export default function Form0Form({
   const configEngineMode =
     form0Config.engine?.mode === 'worker' ? 'worker' : 'main-thread';
   const effectiveEngineMode = engineModeOverride || configEngineMode;
+  const configEngineStore =
+    form0Config.engine?.store === 'selector' ? 'selector' : 'snapshot';
+  const effectiveEngineStoreMode = engineStoreModeOverride || configEngineStore;
 
   return (
     <div style={formStyle}>
@@ -197,6 +201,7 @@ export default function Form0Form({
           mode={effectiveMode}
           autoCloseOverlayOnSubmit={effectiveCloseOverlay}
           engineMode={effectiveEngineMode}
+          engineStoreMode={effectiveEngineStoreMode}
           {...props}
         />
       </FieldRegistryProvider>
