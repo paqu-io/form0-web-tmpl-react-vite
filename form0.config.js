@@ -173,6 +173,27 @@ export default {
      * regardless of the initial interaction mode.
      */
     closeOverlayOnSubmit: true,
+
+    /**
+     * Presentation-specific engine init mode when starting in View/readonly.
+     * - 'immediate': trigger load-record as soon as the form renders
+     * - 'on-edit': defer load-record until the user clicks Edit
+     * Falls back to 'immediate' when omitted.
+     */
+    presentations: {
+      standard: {
+        initMode: 'immediate',
+      },
+      simplified: {
+        initMode: 'immediate',
+      },
+      modal: {
+        initMode: 'on-edit',
+      },
+      spotlight: {
+        initMode: 'on-edit',
+      },
+    },
   },
 
   /**

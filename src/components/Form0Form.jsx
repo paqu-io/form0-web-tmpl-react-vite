@@ -29,6 +29,7 @@ export default function Form0Form({
   autoCloseOverlayOnSubmit: autoCloseOverride,
   engineMode: engineModeOverride,
   engineStoreMode: engineStoreModeOverride,
+  interactionPresentations: interactionPresentationsOverride,
   ...props
 }) {
   const didLogSchema = useRef(false);
@@ -174,6 +175,8 @@ export default function Form0Form({
   const configEngineStore =
     form0Config.engine?.store === 'selector' ? 'selector' : 'snapshot';
   const effectiveEngineStoreMode = engineStoreModeOverride || configEngineStore;
+  const interactionPresentations =
+    interactionPresentationsOverride ?? form0Config.interaction?.presentations ?? null;
 
   return (
     <div style={formStyle}>
@@ -197,6 +200,7 @@ export default function Form0Form({
           simplifiedMode={simplifiedMode}
           onSimplifiedNavigation={onSimplifiedNavigation}
           formPlacement={placement}
+          interactionPresentations={interactionPresentations}
           onRequestClose={onRequestClose}
           mode={effectiveMode}
           autoCloseOverlayOnSubmit={effectiveCloseOverlay}
