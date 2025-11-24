@@ -169,6 +169,13 @@ export default {
     defaultMode: 'view',
 
     /**
+     * Control whether primary actions (Submit / Save / Add) stay visible in View mode.
+     * - true: show them disabled beside the Edit button (current behavior)
+     * - false: hide them until Edit is clicked
+     */
+    showPrimaryActionsInViewMode: false,
+
+    /**
      * Automatically close modal/drawer overlays after successful submit,
      * regardless of the initial interaction mode.
      */

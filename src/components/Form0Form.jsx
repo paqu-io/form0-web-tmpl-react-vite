@@ -30,6 +30,7 @@ export default function Form0Form({
   engineMode: engineModeOverride,
   engineStoreMode: engineStoreModeOverride,
   interactionPresentations: interactionPresentationsOverride,
+  showPrimaryActionsInViewMode: showPrimaryActionsInViewModeOverride,
   ...props
 }) {
   const didLogSchema = useRef(false);
@@ -177,6 +178,12 @@ export default function Form0Form({
   const effectiveEngineStoreMode = engineStoreModeOverride || configEngineStore;
   const interactionPresentations =
     interactionPresentationsOverride ?? form0Config.interaction?.presentations ?? null;
+  const configShowPrimaryActionsInViewMode =
+    form0Config.interaction?.showPrimaryActionsInViewMode;
+  const effectiveShowPrimaryActionsInViewMode =
+    typeof showPrimaryActionsInViewModeOverride === 'boolean'
+      ? showPrimaryActionsInViewModeOverride
+      : configShowPrimaryActionsInViewMode !== false;
 
   return (
     <div style={formStyle}>
@@ -206,6 +213,7 @@ export default function Form0Form({
           autoCloseOverlayOnSubmit={effectiveCloseOverlay}
           engineMode={effectiveEngineMode}
           engineStoreMode={effectiveEngineStoreMode}
+          showPrimaryActionsInViewMode={effectiveShowPrimaryActionsInViewMode}
           {...props}
         />
       </FieldRegistryProvider>
