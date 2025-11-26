@@ -79,6 +79,13 @@ export default function Form0Form({
     (vals, meta = {}) => {
       console.info('🚀 [RECORD SUBMIT] Starting record submission...');
 
+      // If the renderer already produced a structured record, just log it
+      if (vals && typeof vals === 'object' && vals.form_values) {
+        console.info('📋 [STRUCTURED RECORD] Received structured JSON record:');
+        console.log(vals);
+        return;
+      }
+
       if (!schema?.form) {
         console.info('📋 [STRUCTURED RECORD] Generated structured JSON record (raw values):');
         console.log(vals);
@@ -214,6 +221,7 @@ export default function Form0Form({
           engineMode={effectiveEngineMode}
           engineStoreMode={effectiveEngineStoreMode}
           showPrimaryActionsInViewMode={effectiveShowPrimaryActionsInViewMode}
+          fieldKeyMode={FIELD_KEY_MODE}
           {...props}
         />
       </FieldRegistryProvider>
