@@ -267,5 +267,11 @@ export default {
      * Requires reform subscription. Not yet implemented in form0-react.
      */
     showElementLabels: false,
+
+    /**
+     * Override width for BuildingPlan repeatable modals (floors, rooms, columns, beams, objects, doors, windows).
+     * Accepts any CSS width value (e.g., '85vw', '960px', '100%'). When unset, defaults to component width.
+     */
+    modalWidthOverride: '85vw',
   },
 };

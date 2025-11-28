@@ -191,6 +191,7 @@ export default function Form0Form({
     typeof showPrimaryActionsInViewModeOverride === 'boolean'
       ? showPrimaryActionsInViewModeOverride
       : configShowPrimaryActionsInViewMode !== false;
+  const buildingPlanModalWidthOverride = form0Config.buildingPlan?.modalWidthOverride || null;
 
   return (
     <div style={formStyle}>
@@ -222,6 +223,7 @@ export default function Form0Form({
           engineStoreMode={effectiveEngineStoreMode}
           showPrimaryActionsInViewMode={effectiveShowPrimaryActionsInViewMode}
           fieldKeyMode={FIELD_KEY_MODE}
+          buildingPlanModalWidthOverride={buildingPlanModalWidthOverride}
           {...props}
         />
       </FieldRegistryProvider>
