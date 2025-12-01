@@ -1180,6 +1180,76 @@
           }
         ],
         "key": "9a4d5455"
+      },
+      {
+        "type": "BuildingPlanSection",
+        "key": "d76a8181",
+        "data_name": "building_plan",
+        "label": "Building Plan",
+        "description": null,
+        "description_mode": null,
+        "visible": true,
+        "visible_conditions": null,
+        "read_only": false,
+        "read_only_conditions": null,
+        "node_overrides": {
+          "floors": {
+            "extra_elements": [
+            {
+              "type": "TextField",
+              "key": "c96a8181",
+              "data_name": "floor_reference",
+              "label": "Floor Reference Code",
+              "display": "default",
+              "description": null,
+              "description_mode": null,
+              "required": false,
+              "required_conditions": null,
+              "visible": true,
+              "visible_conditions": null,
+              "read_only": false,
+              "read_only_conditions": null,
+              "default_value": null,
+              "pattern": null,
+              "pattern_description": null,
+              "supporting_image": false,
+              "supporting_image_path": null,
+              "supporting_image_display": null
+            }
+            ]
+          },
+          "columns": {
+            "extra_elements": [
+            {
+              "type": "SingleChoiceField",
+              "key": "e96a8181",
+              "data_name": "column_material",
+              "label": "Column Material",
+              "display": "default",
+              "description": null,
+              "description_mode": null,
+              "required": false,
+              "required_conditions": null,
+              "visible": true,
+              "visible_conditions": null,
+              "read_only": false,
+              "read_only_conditions": null,
+              "default_value": null,
+              "allow_other": true,
+              "supporting_image": false,
+              "supporting_image_path": null,
+              "supporting_image_display": null,
+              "is_searchable": false,
+              "is_searchable_mode": null,
+              "choices": [
+              { "label": "Concrete", "value": "concrete" },
+              { "label": "Steel", "value": "steel" },
+              { "label": "Timber", "value": "timber" }
+              ]
+            }
+            ]
+          }
+        }
       }
     ]
   }
