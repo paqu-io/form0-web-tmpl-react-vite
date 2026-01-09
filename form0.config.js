@@ -197,6 +197,29 @@ export default {
   },
 
   /**
+   * Development Server
+   *
+   * Configure the app dev server command and local API routing for form0-cli.
+   */
+  devServer: {
+    /**
+     * Command to start the app dev server (used by `form0 serve --app`)
+     */
+    command: 'npm run dev',
+
+    /**
+     * When true, submit records to the form0-cli dev server connector endpoints.
+     */
+    submitToConnector: true,
+
+    /**
+     * Base URL for form0-cli dev server API endpoints.
+     * Use '/api' with Vite proxy, or a full URL for direct requests.
+     */
+    apiBaseUrl: '/api',
+  },
+
+  /**
    * Field Renderer Overrides
    *
    * Map field types to custom renderer implementations.
@@ -252,5 +275,14 @@ export default {
      * Accepts any CSS width value (e.g., '85vw', '960px', '100%'). When unset, defaults to component width.
      */
     modalWidthOverride: '85vw',
+  },
+
+  connectors: {
+    'form0-connector-pg': {
+      tableName: 'form0_submissions',
+      schema: 'public',
+      enabled: true,
+      autoLoad: true,
+    },
   },
 };

@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "form0-connector-pg": "file:../form0-connector-pg",
     "form0-core": "file:../form0-core",
     "form0-react": "file:../form0-react",
     "lucide-react": "^0.522.0",

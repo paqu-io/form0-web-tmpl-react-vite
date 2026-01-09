@@ -10,6 +10,17 @@ import {
 } from '../lib/record-utils.js';
 
 const FIELD_KEY_MODE = form0Config.output?.useKeys ? 'prefer-key' : 'data-name';
+const DEV_SERVER_CONFIG = form0Config.devServer || {};
+const DEV_SERVER_SUBMIT = DEV_SERVER_CONFIG.submitToConnector === true;
+const DEV_SERVER_API_BASE = (DEV_SERVER_CONFIG.apiBaseUrl || '/api').replace(/\/$/, '');
+const META_VALUE_KEYS = new Set([
+  'created_at',
+  'updated_at',
+  'created_at_client',
+  'updated_at_client',
+  'created_at_server',
+  'updated_at_server',
+]);
 
 export default function Form0Form({
   schema,
@@ -76,11 +87,150 @@ export default function Form0Form({
   }, []);
 
   const defaultStructuredSubmit = useCallback(
-    (vals, meta = {}) => {
+    async (vals, meta = {}) => {
       console.info('🚀 [RECORD SUBMIT] Starting record submission...');
 
       // If the renderer already produced a structured record, just log it
-      if (vals && typeof vals === 'object' && vals.form_values) {
+      const hasStructuredRecord = vals && typeof vals === 'object' && vals.form_values;
+      const rawValues =
+        meta?.rawValues && typeof meta.rawValues === 'object' ? meta.rawValues : null;
+      const repeatableValues = meta?.repeatable || {};
+      const timestamps = meta?.timestamps || {};
+      const statusFieldName = schema?.form?.status_field?.data_name || null;
+      const statusValue = statusFieldName ? rawValues?.[statusFieldName] ?? null : null;
+      const fieldNames = new Set(
+        (flattenedFields || []).map((field) => field?.data_name).filter(Boolean),
+      );
+      const devServerHint = `form0 dev server is not reachable at ${DEV_SERVER_API_BASE}. Run "form0 serve --app" for app projects, or "form0 serve" if this is not an app project. If you start the app dev server directly, make sure it proxies ${DEV_SERVER_API_BASE} to the CLI server.`;
+
+      const parseJsonResponse = async (response) => {
+        const text = await response.text();
+        if (!text) {
+          return { data: null, text: '' };
+        }
+        try {
+          return { data: JSON.parse(text), text };
+        } catch (err) {
+          return { data: null, text };
+        }
+      };
+
+      const sanitizeValues = (values) => {
+        if (!values || typeof values !== 'object') {
+          return values;
+        }
+
+        return Object.fromEntries(
+          Object.entries(values).filter(([key]) => {
+            if (META_VALUE_KEYS.has(key) && !fieldNames.has(key)) {
+              return false;
+            }
+            if (key === statusFieldName && statusFieldName && !fieldNames.has(key)) {
+              return false;
+            }
+            return true;
+          }),
+        );
+      };
+
+      if (DEV_SERVER_SUBMIT) {
+        try {
+          let record = vals;
+
+          const needsServerRecord = !hasStructuredRecord || !vals?.id || !vals?.changeset_id;
+
+          if (needsServerRecord) {
+            if (!schema?.form) {
+              throw new Error('Form schema not available for record creation.');
+            }
+
+            if (!rawValues) {
+              throw new Error('Raw form values are missing for record creation.');
+            }
+
+            const cleanedValues = sanitizeValues(rawValues);
+
+            const requestBody = {
+              state: { values: cleanedValues, repeatable: repeatableValues },
+              options: {
+                '@status': statusValue ?? undefined,
+                fieldKeyMode: FIELD_KEY_MODE,
+                created_at_client: timestamps.created_at_client ?? undefined,
+                updated_at_client: timestamps.updated_at_client ?? undefined,
+                created_at_server: timestamps.created_at_server ?? null,
+                updated_at_server: timestamps.updated_at_server ?? null,
+              },
+            };
+
+            if (schema && typeof schema === 'object') {
+              requestBody.schema = schema;
+            }
+
+            const createResponse = await fetch(`${DEV_SERVER_API_BASE}/create-record`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(requestBody),
+            });
+
+            const { data: createPayload } = await parseJsonResponse(createResponse);
+            if (!createResponse.ok || !createPayload) {
+              const baseMessage = createPayload?.error || devServerHint;
+              const suffix = createPayload?.error ? ` ${devServerHint}` : '';
+              throw new Error(`${baseMessage}${suffix}`);
+            }
+
+            record = createPayload.record;
+          }
+
+          console.info('📋 [STRUCTURED RECORD] Generated structured JSON record:');
+          console.log(record);
+
+          console.info('💾 [DATABASE SUBMIT] Submitting to configured connectors...');
+
+          const submitResponse = await fetch(`${DEV_SERVER_API_BASE}/submit-record`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ record }),
+          });
+
+          const { data: submitPayload } = await parseJsonResponse(submitResponse);
+          if (!submitResponse.ok || !submitPayload) {
+            throw new Error(submitPayload?.error || devServerHint);
+          }
+
+          if (submitPayload.success) {
+            console.log(`✅ [DATABASE SUBMIT] ${submitPayload.message}`);
+          } else {
+            console.warn(`⚠️ [DATABASE SUBMIT] ${submitPayload.message}`);
+          }
+
+          if (Array.isArray(submitPayload.connectorResults)) {
+            submitPayload.connectorResults.forEach((result) => {
+              const status = result.success ? '✅' : '❌';
+              const details = result.success
+                ? result.message || 'Success'
+                : result.error || 'Unknown error';
+              console.log(`   ${status} ${result.connector}: ${details}`);
+            });
+          }
+          return;
+        } catch (error) {
+          const errorMessage = error?.message || '';
+          const shouldHint =
+            error instanceof TypeError ||
+            error instanceof SyntaxError ||
+            /Failed to fetch|Unexpected end of JSON|NetworkError|ECONNREFUSED|proxy/i.test(
+              errorMessage,
+            );
+
+          if (shouldHint && !errorMessage.includes(devServerHint)) {
+            console.warn(`[form0] ${devServerHint}`);
+          }
+          console.error('[form0] Failed to submit record to dev server.', error);
+        }
+      }
+
+      if (hasStructuredRecord) {
         console.info('📋 [STRUCTURED RECORD] Received structured JSON record:');
         console.log(vals);
         return;

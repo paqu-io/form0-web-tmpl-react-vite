@@ -11,13 +11,21 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
+
+const form0DevApiTarget = process.env.FORM0_DEV_API_URL || 'http://localhost:3030';
 
 export default defineConfig({
   server: {
     fs: {
       // Allow serving files from parent directory (for local file dependencies)
       allow: ['..'],
+    },
+    proxy: {
+      '/api': {
+        target: form0DevApiTarget,
+        changeOrigin: true,
+      },
     },
   },
   resolve: {
