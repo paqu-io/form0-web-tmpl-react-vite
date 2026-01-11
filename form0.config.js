@@ -284,5 +284,13 @@ export default {
       enabled: true,
       autoLoad: true,
     },
+    'form0-connector-sqlite': {
+      // WSL2 tip: use /mnt/c/... to store the DB on Windows for tools like DBeaver.
+      databasePath: './form0.db',
+      tableName: 'form0_submissions',
+      childTableName: 'form0_submissions_children',
+      enabled: false,
+      autoLoad: false,
+    },
   },
 };
