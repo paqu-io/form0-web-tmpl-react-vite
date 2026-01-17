@@ -1,4 +1,4 @@
-# form0 Vite Template
+# form0 Vite Template (TEST)
 
 A production-ready Vite + React template for building forms with [form0-react](https://github.com/paqu-io/form0-react). This template demonstrates best practices for integrating form0 into a React application with custom styling, field renderers, and centralized configuration.
 
