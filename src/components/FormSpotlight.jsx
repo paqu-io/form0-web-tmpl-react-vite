@@ -1,38 +1,53 @@
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
-import Form0Form from "./Form0Form";
-import { Button } from "@/components/ui/button";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from '@/components/ui/drawer';
+import Form0Form from './Form0Form';
+import { mergeLayoutProps } from '../lib/presentation-settings.js';
 
-export default function FormSpotlight({ open, onOpenChange, theme, formWidth, labelWidthPercent }) {
+export default function FormSpotlight({
+  open,
+  onOpenChange,
+  schema,
+  theme,
+  formTitle = 'Form',
+  formWidth,
+  labelWidthPercent,
+  labelPosition,
+}) {
+  const layoutConfig = mergeLayoutProps(
+    { theme, formWidth, labelWidthPercent, labelPosition },
+    'spotlight',
+  );
+
   return (
-    <Drawer open={open} onOpenChange={onOpenChange} direction="right">
+    <Drawer
+      open={open}
+      onOpenChange={onOpenChange}
+      direction="right"
+      modal={false}
+      shouldScaleBackground={false}
+    >
       <DrawerContent
         className="max-h-[100vh] overflow-y-auto overflow-x-hidden p-6 rounded-l-lg"
         style={{
-          '--label-width': `${labelWidthPercent}%`,
-          width: formWidth, 
-          maxWidth: formWidth,
+          width: layoutConfig.formWidth,
+          maxWidth: layoutConfig.formWidth,
         }}
         onPointerDownOutside={(e) => {
           e.preventDefault();
         }}
       >
         <DrawerHeader>
-          <DrawerTitle>Form (Spotlight)</DrawerTitle>
-            <DrawerDescription>
-              Fill out the form and submit your information.
-            </DrawerDescription>
+          <DrawerTitle>{formTitle} (Spotlight)</DrawerTitle>
+          <DrawerDescription>Fill out the form and submit your information.</DrawerDescription>
         </DrawerHeader>
         <Form0Form
-          theme={theme}
-          //formWidth={formWidth}
-          onSubmit={(vals) => {
-            alert(JSON.stringify(vals, null, 2));
-            onOpenChange(false);
-          }}
+          schema={schema}
+          theme={layoutConfig.theme}
+          formWidth={layoutConfig.formWidth}
+          labelWidthPercent={layoutConfig.labelWidthPercent}
+          labelPosition={layoutConfig.labelPosition}
+          placement="form-spotlight"
+          onRequestClose={() => onOpenChange(false)}
         />
-        <DrawerClose asChild>
-          <Button>Close</Button>
-        </DrawerClose>
       </DrawerContent>
     </Drawer>
   );

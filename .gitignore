@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Database files
+form0.db
+
+# Install-state files
+.form0/
