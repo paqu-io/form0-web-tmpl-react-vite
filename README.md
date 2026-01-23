@@ -146,7 +146,7 @@ Map field types to custom implementations. Keys are field type names from form0-
 ## Project Structure
 
 ```
-form0-test1/
+form0-web-tmpl-react-vite/
 ├── form0.config.js                 # Central configuration
 ├── src/
 │   ├── components/

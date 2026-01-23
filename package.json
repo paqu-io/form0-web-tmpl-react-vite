@@ -1,13 +1,18 @@
 {
-  "name": "form0-test1",
+  "name": "form0-web-tmpl-react-vite",
   "private": true,
   "version": "0.0.0",
+  "description": "Vite + React template for form0 ecosystem.",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -19,10 +24,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "form0-connector-pg": "file:../form0-connector-pg",
-    "form0-connector-sqlite": "file:../form0-connector-sqlite",
-    "form0-core": "file:../form0-core",
-    "form0-react": "file:../form0-react",
+    "form0-core": "^0.1.0-0",
+    "form0-react": "^0.1.0-0",
     "lucide-react": "^0.522.0",
     "react": "^19.1.0",
     "react-day-picker": "^9.11.1",

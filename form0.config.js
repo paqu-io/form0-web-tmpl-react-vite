@@ -276,19 +276,4 @@ export default {
      */
     modalWidthOverride: '85vw',
   },
-
-  connectors: {
-    'form0-connector-pg': {
-      tableName: 'form0_submissions',
-      schema: 'public',
-      enabled: true,
-      autoLoad: true,
-    },
-    'form0-connector-sqlite': {
-      tableName: 'form0_submissions',
-      childTableName: 'form0_submissions_children',
-      enabled: true,
-      autoLoad: false,
-    },
-  },
 };
