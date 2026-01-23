@@ -38,9 +38,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  // optimizeDeps: {
-  //   exclude: ['form0-react'], // 👈 exclude symlinked lib ONLY
-  // },
+  optimizeDeps: {
+    // Exclude to prevent Vite dep optimizer from moving engine-worker.js
+    // into .vite/deps, where it isn't emitted.
+    exclude: ['form0-react'],
+  },
   // ssr: {
   //   noExternal: ['form0-react'],
   // },
