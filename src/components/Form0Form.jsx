@@ -28,6 +28,7 @@ export default function Form0Form({
   theme,
   colorMode,
   onSubmit,
+  useDefaultSubmitHandler = true,
   labelPosition,
   formWidth,
   labelWidthPercent,
@@ -350,7 +351,10 @@ export default function Form0Form({
           schema={schema}
           debug={debug}
           initialValues={initialValues}
-          onSubmit={onSubmit || defaultStructuredSubmit}
+          onSubmit={
+            onSubmit ??
+            (useDefaultSubmitHandler ? defaultStructuredSubmit : undefined)
+          }
           onSchemaReady={(schemaWithKeys) => {
             if (!didLogSchema.current) {
               console.log(schemaWithKeys);

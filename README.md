@@ -143,6 +143,11 @@ Map field types to custom implementations. Keys are field type names from form0-
 
 - **`useKeys`**: When `true`, uses schema keys instead of `data_name` values in form output
 
+### Form0Form submit behavior
+
+- `Form0Form` injects its default structured-submit handler when `onSubmit` is omitted.
+- Pass `useDefaultSubmitHandler={false}` to opt out and render the form without that fallback.
+
 ## Project Structure
 
 ```

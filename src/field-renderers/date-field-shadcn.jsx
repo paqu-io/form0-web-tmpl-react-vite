@@ -3,9 +3,9 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import { format, isValid, parse } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { Calendar } from "../components/ui/calendar";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover";
 
 const DATE_STORE_FORMAT = "yyyy-MM-dd";
 
