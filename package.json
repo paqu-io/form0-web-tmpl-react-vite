@@ -3,16 +3,29 @@
   "private": true,
   "version": "0.0.0",
   "description": "Vite + React template for form0 ecosystem.",
+  "keywords": [
+    "form0",
+    "paqu-io",
+    "schema-driven-forms",
+    "json-schema",
+    "template",
+    "react",
+    "vite",
+    "form-engine",
+    "dynamic-forms"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "security:audit:prod": "npm audit --omit=dev --omit=peer --audit-level=high",
+    "check": "npm run lint && npm run build",
     "preview": "vite preview"
   },
   "license": "MIT",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",

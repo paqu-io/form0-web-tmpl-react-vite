@@ -48,7 +48,8 @@ export default function Form0Form({
   const didLogSchema = useRef(false);
   const [customTheme, setCustomTheme] = useState(null);
 
-  const schemaElements = schema?.form?.elements ?? [];
+  const rawSchemaElements = schema?.form?.elements;
+  const schemaElements = useMemo(() => rawSchemaElements ?? [], [rawSchemaElements]);
   const flattenedFields = useMemo(() => flattenFields(schemaElements), [schemaElements]);
 
   // Dynamically load custom theme if specified in config
@@ -111,7 +112,7 @@ export default function Form0Form({
         }
         try {
           return { data: JSON.parse(text), text };
-        } catch (err) {
+        } catch {
           return { data: null, text };
         }
       };
