@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
-import { format, isValid, parse } from "date-fns";
+import { format, parse } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "../components/ui/calendar";
@@ -20,7 +20,7 @@ function getLocaleDateFormat() {
 
   // Parse the formatted string to detect order
   // formatted might be: "01/15/2025" or "15/01/2025" or "2025/01/15" etc.
-  const parts = formatted.split(/[\/.,-]/); // Split by common separators
+  const parts = formatted.split(/[/.,-]/); // Split by common separators
 
   // Find which part is which by value
   const dayIndex = parts.findIndex(p => parseInt(p) === 15);
@@ -34,7 +34,7 @@ function getLocaleDateFormat() {
   formatParts[yearIndex] = 'yyyy';
 
   // Get the separator from the formatted string
-  const separator = formatted.match(/[\/.,-]/)?.[0] || '/';
+  const separator = formatted.match(/[/.,-]/)?.[0] || '/';
 
   return formatParts.join(separator);
 }
