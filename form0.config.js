@@ -208,6 +208,13 @@ export default {
     command: 'npm run dev',
 
     /**
+     * Port the app dev server listens on (Vite's default). form0-cli starts the
+     * app first and starts its own dev server once this port is ready.
+     * Keep it in sync with Vite's server port.
+     */
+    port: 5173,
+
+    /**
      * When true, submit records to the form0-cli dev server connector endpoints.
      */
     submitToConnector: true,
