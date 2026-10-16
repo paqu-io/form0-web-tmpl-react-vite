@@ -10,6 +10,10 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
+      // Matches devServer.port in form0.config.js. If the port is taken, Vite
+      // stops instead of moving to another port that form0-cli does not know.
+      port: 5173,
+      strictPort: true,
       fs: {
         // Allow serving files from parent directory (for local file dependencies)
         allow: ['..'],
