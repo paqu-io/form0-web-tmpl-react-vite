@@ -79,6 +79,7 @@ export default function FormPage() {
       {schema && (
         <Form0Form
           schema={schema}
+          recordKind="new"
           initialValues={formDefinition.initialValues}
           theme={pagePresentation.theme}
           formWidth={pagePresentation.layout.formWidth}
