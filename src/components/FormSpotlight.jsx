@@ -41,6 +41,7 @@ export default function FormSpotlight({
         </DrawerHeader>
         <Form0Form
           schema={schema}
+          recordKind="new"
           theme={layoutConfig.theme}
           formWidth={layoutConfig.formWidth}
           labelWidthPercent={layoutConfig.labelWidthPercent}

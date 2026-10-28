@@ -55,6 +55,7 @@ export default function FormModal({
         </DialogHeader>
         <Form0Form
           schema={schema}
+          recordKind="new"
           theme={layoutConfig.theme}
           formWidth={layoutConfig.formWidth}
           labelWidthPercent={layoutConfig.labelWidthPercent}

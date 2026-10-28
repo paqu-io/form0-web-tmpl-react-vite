@@ -28,6 +28,8 @@ export default function Form0Form({
   theme,
   colorMode,
   onSubmit,
+  recordKind,
+  engineOptions,
   useDefaultSubmitHandler = true,
   labelPosition,
   formWidth,
@@ -51,6 +53,16 @@ export default function Form0Form({
   const rawSchemaElements = schema?.form?.elements;
   const schemaElements = useMemo(() => rawSchemaElements ?? [], [rawSchemaElements]);
   const flattenedFields = useMemo(() => flattenFields(schemaElements), [schemaElements]);
+  const classifiedEngineOptions = useMemo(
+    () =>
+      recordKind === undefined
+        ? engineOptions
+        : {
+            ...engineOptions,
+            events: { ...engineOptions?.events, recordKind },
+          },
+    [engineOptions, recordKind]
+  );
 
   // Dynamically load custom theme if specified in config
   useEffect(() => {
@@ -215,6 +227,9 @@ export default function Form0Form({
               console.log(`   ${status} ${result.connector}: ${details}`);
             });
           }
+          if (!submitPayload.success) {
+            throw new Error(submitPayload.message || 'Record persistence failed.');
+          }
           return;
         } catch (error) {
           const errorMessage = error?.message || '';
@@ -229,6 +244,7 @@ export default function Form0Form({
             console.warn(`[form0] ${devServerHint}`);
           }
           console.error('[form0] Failed to submit record to dev server.', error);
+          throw error;
         }
       }
 
@@ -351,6 +367,7 @@ export default function Form0Form({
         <FormRenderer
           schema={schema}
           debug={debug}
+          engineOptions={classifiedEngineOptions}
           initialValues={initialValues}
           onSubmit={
             onSubmit ??
