@@ -5,4 +5,4 @@ url: http://localhost:5173/
     text: "Standard Page"
     index: 0
 - assertVisible:
-    text: "Demo Enrollment"
+    text: "Nature Observation"

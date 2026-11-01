@@ -1,0 +1,36 @@
+# Preserve the repository exclusions when packing this private template.
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Database files
+form0.db
+
+# Install-state files
+.form0/
+# Historical starter examples
+archive/
+# Local configuration
+.env
+.env.*
