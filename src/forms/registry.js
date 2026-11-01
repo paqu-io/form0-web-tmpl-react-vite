@@ -1,35 +1,29 @@
-export const PAGE_VARIANTS = ['standard', 'simplified'];
-export const OVERLAY_VARIANTS = ['modal', 'spotlight'];
+import { starterForms } from "./catalog.js";
+
+export const PAGE_VARIANTS = ["standard", "simplified"];
+export const OVERLAY_VARIANTS = ["modal", "spotlight"];
 
 // Presentation key constants (used for looking up presentation settings)
-export const DEFAULT_PAGE_VARIANT_KEY = 'standard';
-export const DEFAULT_OVERLAY_VARIANT_KEY = 'modal';
+export const DEFAULT_PAGE_VARIANT_KEY = "standard";
+export const DEFAULT_OVERLAY_VARIANT_KEY = "modal";
 
+// Keep a literal forms array so the CLI can add, update, and remove registrations.
 const forms = [
   {
-    id: 'demo-form',
-    title: 'Demo Enrollment',
-    description: 'A showcase schema with a bit of everything to exercise the renderer.',
-    tags: ['demo', 'kitchen-sink'],
-    loadSchema: () => import('./demo/schema.json'),
-    initialValues: {
-      age: 18,
-    },
+    ...starterForms[0],
+    id: "nature-observation",
+    loadSchema: () => import("./nature-observation/schema.json"),
   },
   {
-    id: 'demo-form-bis',
-    title: 'Demo Enrollment Bis',
-    description: 'A showcase schema with a bit of everything to exercise the renderer.',
-    tags: ['demo', 'test'],
-    loadSchema: () => import('./demo-bis/schema.json'),
+    ...starterForms[1],
+    id: "equipment-checkout",
+    loadSchema: () => import("./equipment-checkout/schema.json"),
   },
   {
-    id: 'demo-form-ter',
-    title: 'Demo EnrollmentTer',
-    description: 'A showcase schema with a bit of everything to exercise the renderer.',
-    tags: ['demo', 'test'],
-    loadSchema: () => import('./demo-ter/schema.json'),
-  }
+    ...starterForms[2],
+    id: "building-condition-survey",
+    loadSchema: () => import("./building-condition-survey/schema.json"),
+  },
 ];
 
 export const DEFAULT_FORM_ID = forms[0]?.id ?? null;

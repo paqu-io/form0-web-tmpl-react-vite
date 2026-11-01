@@ -20,8 +20,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "security:audit:prod": "npm audit --omit=dev --omit=peer --audit-level=high",
-    "check": "npm run lint && npm run build",
-    "preview": "vite preview"
+    "check": "npm run test:schemas && npm run lint && npm run build",
+    "preview": "vite preview",
+    "test:schemas": "node --test tests/starter-schemas.test.mjs"
   },
   "license": "MIT",
   "engines": {

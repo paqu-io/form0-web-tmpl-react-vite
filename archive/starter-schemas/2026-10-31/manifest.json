@@ -1,0 +1,27 @@
+{
+  "repository": "form0-web-tmpl-react-vite",
+  "source_commit": "b06f8eed7307ed2e131478aa360fc2b207c017a2",
+  "archived_on": "2026-10-31",
+  "files": [
+    {
+      "path": "src/forms/demo/schema.json",
+      "sha256": "eda0ba6578f1a0d6b8b8edba9d10e79818d3f221738700f2f0c12d12c323b971"
+    },
+    {
+      "path": "src/forms/demo-bis/schema.json",
+      "sha256": "e6e5432108bfcd4d60e767fc2d25da6289baa7c6bccc5c03368f5aab86ed92ff"
+    },
+    {
+      "path": "src/forms/demo-ter/schema.json",
+      "sha256": "e6e5432108bfcd4d60e767fc2d25da6289baa7c6bccc5c03368f5aab86ed92ff"
+    },
+    {
+      "path": "public/supporting-images/palette.jpg",
+      "sha256": "b601c258b9d71bf0c72b5c93f85d24a4bd0320d98831ca9cbb0bef2271ce15b5"
+    },
+    {
+      "path": "public/supporting-images/topics.jpg",
+      "sha256": "5e7688088359512ac6a89eb8c37d43ab2f1d9b4bf98615933ac40f0aac1329a4"
+    }
+  ]
+}
